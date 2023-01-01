@@ -1,0 +1,35 @@
+<div class="jumbotron text-center">
+  <h1>MEAN STACK APP</h1>
+  <P class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis sunt necessitatibus qui molestiae perferendis dolores omnis repellendus. Voluptas tenetur aspernatur, ipsam dolor magni earum perspiciatis dolores unde, exercitationem doloremque odit.</P>
+  <div>
+    <a *ngIf="!authService.loggedIn()" class="btn btn-primary" routerLink="/register">Register</a>
+    <a *ngIf="!authService.loggedIn()" class="btn btn-default" routerLink="/login">Login</a>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row g-5">
+    <div class="col-12 col-md-4" *ngFor="let product of products">
+      <app-product-item [product]="product" (added)="addToCart($event)">
+      </app-product-item>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h3>Mongodb</h3>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel ut voluptatem neque distinctio libero totam amet eveniet nesciunt quidem! Repellat recusandae eos cum veniam ipsum modi assumenda a expedita atque?</p>
+  </div>
+  <div class="col-md-4">
+    <h3>ExpressJs</h3>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel ut voluptatem neque distinctio libero totam amet eveniet nesciunt quidem! Repellat recusandae eos cum veniam ipsum modi assumenda a expedita atque?</p>
+  </div>
+  <div class="col-md-4">
+    <h3>Angular</h3>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel ut voluptatem neque distinctio libero totam amet eveniet nesciunt quidem! Repellat recusandae eos cum veniam ipsum modi assumenda a expedita atque?</p>
+  </div>
+  <div class="col-md-4">
+    <h3>NodeJs</h3>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel ut voluptatem neque distinctio libero totam amet eveniet nesciunt quidem! Repellat recusandae eos cum veniam ipsum modi assumenda a expedita atque?</p>
+  </div>
+</div>

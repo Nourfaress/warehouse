@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="fadein">
+    <h2 class="page-header">Edit Product</h2>
+     <div class="alert alert-danger" *ngIf="" role="alert"></div>
+    <form #FormData="ngForm" (ngSubmit)="(FormData)">
+
+      <div class="form-data">
+          <label for="name">Name
+          <sup class="red">*</sup>
+          </label>
+          <input  name="name" id="name" #name="ngModel" [ngModel] type="text" class="form-control">
+      </div>
+
+        <!-- <div class="form-data">
+            <label for="description">description
+                <sup class="red">*</sup>
+            </label>
+            <input required name="description" id="description" #description="ngModel" ngModel type="text" class="form-control" >
+        </div>
+
+        <div class="form-data">
+          <label for="richDescription">richDescription
+              <sup class="red">*</sup>
+          </label>
+          <input required name="richDescription" id="richDescription" #richDescription="ngModel" ngModel type="text" class="form-control">
+        </div>
+
+      <div class="form-data">
+        <label for="brand">brand
+            <sup class="red">*</sup>
+        </label>
+        <input required name="brand" id="brand" #brand="ngModel" ngModel type="text" class="form-control">
+      </div>
+
+      <div class="form-data">
+      <label for="price">price
+      <sup class="red">*</sup>
+      </label>
+      <input required name="price" id="price" #price="ngModel" ngModel type="number" class="form-control">
+      </div> -->
+
+      <div class="form-data">
+      <label for="category">category
+      <sup class="red">*</sup>
+      </label>
+      <input required name="category" id="category" #category="ngModel" ngModel type="text" class="form-control">
+      </div>
+
+        <br>
+        <input type="submit" class="btn btn-primary" (click)="onEditChange(this.product._id)"value="Save Edit" [disabled]="!FormData.valid">
+    </form>
+  </div>
+</div>

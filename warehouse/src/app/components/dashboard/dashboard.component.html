@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="fadein">
+    <h2 class="page-header">add new product </h2>
+     <div class="alert alert-danger" *ngIf="" role="alert"></div>
+    <form #FormData="ngForm" (ngSubmit)="SubmitData(FormData)">
+
+      <div class="form-data">
+          <label for="name">Name
+          <sup class="red">*</sup>
+          </label>
+          <input required name="name" id="name" #name="ngModel" [ngModel] type="text" class="form-control">
+      </div>
+
+        <div class="form-data">
+            <label for="description">description
+                <sup class="red">*</sup>
+            </label>
+            <input required name="description" id="description" #description="ngModel" ngModel type="text" class="form-control">
+        </div>
+        <div class="form-data">
+          <label for="richDescription">richDescription
+              <sup class="red">*</sup>
+          </label>
+          <input required name="richDescription" id="richDescription" #richDescription="ngModel" ngModel type="text" class="form-control">
+      </div>
+      <div class="form-data">
+        <label for="brand">brand
+            <sup class="red">*</sup>
+        </label>
+        <input required name="brand" id="brand" #brand="ngModel" ngModel type="text" class="form-control">
+    </div>
+    <div class="form-data">
+      <label for="price">price
+          <sup class="red">*</sup>
+      </label>
+      <input required name="price" id="price" #price="ngModel" ngModel type="number" class="form-control">
+  </div>
+  <div class="form-data">
+    <label for="category">category
+        <sup class="red">*</sup>
+    </label>
+    <input required name="category" id="category" #category="ngModel" ngModel type="text" class="form-control">
+</div>
+<div class="form-data">
+  <label for="countInStock">countInStock
+      <sup class="red">*</sup>
+  </label>
+  <input required name="countInStock" id="countInStock" #countInStock="ngModel" ngModel type="number" class="form-control">
+</div>
+<div class="form-data">
+  <label for="image">image
+      <sup class="red">*</sup>
+  </label>
+    <input required type="file" name="image" #image="ngModel" [ngModel] accept="image/*" (change)="onFileChange($event)">
+</div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Add Product" [disabled]="!FormData.valid">
+    </form>
+  </div>
+</div>
+
+<table class="table table-striped table-bordered">
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>countInStock</th>
+          <th>price</th>
+          <th>image</th>
+          <th>Action</th>
+      </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let product of products ">
+          <td>{{product.name}}</td>
+          <td>{{product.countInStock}}</td>
+          <td>{{product.price}}</td>
+          <td><img src="{{product.image}}" class="img-fluid rounded-start"
+            alt="{{product.name}}" style="max-height: 60px; object-fit: cover; width: 100%;" ></td>
+          <td>
+              <button class="btn btn-primary me-1" [routerLink]="['edit/', product._id]">Edit</button>
+              <button class="btn btn-danger" (click)="onDelete(product._id || '')">Delete</button>
+          </td>
+      </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-primary mt-3" [routerLink]="['new']">Add a New product</button>
+

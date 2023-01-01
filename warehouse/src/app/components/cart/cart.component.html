@@ -1,0 +1,77 @@
+<div class="cart-container">
+  <div class="empty-cart-message"><h3 *ngIf="items.length === 0">Your shopping cart is empty<br><h6>lets do some shopping</h6></h3></div>
+  <div class="cart-panel row g-5 justify-content-center" *ngIf="items.length !== 0">
+    <div class="col-12 col-md-5">
+      <div class="card mb-3" *ngFor="let item of items">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{item.product.image}}" class="" alt="{{item.product.name}}">
+          </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{item.product.name}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">$ {{item.product.price}}</h6>
+                    <p class="card-text">{{item.product.description}}</p>
+                      <div class="input-group mb-3">
+                          <input type="number" class="form-control" min="1" max="10" [(ngModel)]="item.quantity"(ngModelChange)="updateQuantity()">
+                            <button class="btn btn-danger" (click)="removeFromCart(item)">Remove</button>
+                      </div>
+          <p>Total: $ {{item.product.price * item.quantity}}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="card">
+              <div class="card-body">
+                  <h4>Total: $ {{totalPrice}}</h4>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-5">
+          <form #form="ngForm" *ngIf="items.length > 0" (ngSubmit)="submit()">
+              <div class="mb-3">
+                  <label for="fullNameIn" class="form-label">Full name</label>
+                  <input name="fullNameIn" type="text" required class="form-control" minlength="4"
+                      placeholder="(minimum 4 characters)" maxlength="40" id="fullNameIn" [(ngModel)]="fullName"
+                      aria-describedby="fullNameHelp" #fullNameIn="ngModel" autocomplete="off">
+                  <div id="fullNameHelp" class="form-text" *ngIf="fullNameIn.invalid && fullNameIn.dirty">
+                      <p class="text-danger" *ngIf="fullNameIn.errors?.['required']">
+                          Full Name is required.
+                      </p>
+                      <p class="text-danger" *ngIf="fullNameIn.errors?.['minlength']">
+                          Full Name is too short.
+                      </p>
+                      <p class="text-danger" *ngIf="fullNameIn.errors?.['maxlength']">
+                          Full Name is too long.
+                      </p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <label for="addIn" class="form-label">Address</label>
+                  <input name="addIn" type="text" required class="form-control" minlength="10"
+                      placeholder="(minimum 10 characters)" maxlength="64" id="addIn" [(ngModel)]="address"
+                      aria-describedby="addHelp" #addIn="ngModel" autocomplete="off">
+                  <div id="addHelp" class="form-text" *ngIf="addIn.invalid && addIn.dirty">
+                      <p class="text-danger" *ngIf="addIn.errors?.['required']">
+                          Address is required.
+                      </p>
+                      <p class="text-danger" *ngIf="addIn.errors?.['minlength']">
+                          Address is too short.
+                      </p>
+                      <p class="text-danger" *ngIf="addIn.errors?.['maxlength']">
+                          Address is too long.
+                      </p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <label for="creditIn" class="form-label">Credit Card</label>
+                  <input name="creditIn" type="text" required class="form-control" minlength="16" pattern="[0-9]*"
+                      placeholder="(16-digit-number)" maxlength="16" id="creditIn" [(ngModel)]="creditCard"
+                      aria-describedby="creditHelp" #creditIn="ngModel" autocomplete="off">
+                      We'll never share your email with anyone else.
+                  </div>
+              <button type="submit" class="btn btn-success" [disabled]="form.invalid">Submit</button>
+          </form>
+      </div>
+  </div>
+</div>

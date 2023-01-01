@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="card">
+    <a routerLink="products/{{ product._id }}">
+        <img src="{{product.image}}" alt="{{product.name}}" class="card-img-top"
+            style="max-height: 380px; object-fit: cover;">
+    </a>
+    <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">$ {{product.price}}</h6>
+        <p class="card-text">
+            {{product.description}}
+        </p>
+    </div>
+    <div class="card-body">
+        <select class="form-select" [(ngModel)]="quantity">
+          <option *ngFor="let quantity of quantities" [value]="quantity">{{quantity}}</option>
+        </select>
+    </div>
+    <div class="card-body text-end">
+        <button (click)="addItem(product)" class="btn btn-primary">Add to cart</button>
+    </div>
+  </div>
+  </div>
